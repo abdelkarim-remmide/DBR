@@ -432,7 +432,8 @@ public class Main extends javax.swing.JFrame implements MouseListener {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         schema=jTextArea1.getText().trim();
-        if (!schema.matches("^([a-zA-Z]+\\([a-zA-Z]+(,[a-zA-Z]+)*\\);)+$")){
+        schema.replaceAll("\\s","");
+        if (!schema.matches("(\\n|\\t| )*([a-zA-Z_0-9]+\\([a-zA-Z_0-9]+(,[a-zA-Z_0-9]+)*\\);(\\n|\\t| )*)+")){
           JOptionPane.showMessageDialog(this,
             "L'entrée que vous avez fournie n'est pas valide, assurez-vous de saisir l'entrée au format approprié.",
             "Inane error",
