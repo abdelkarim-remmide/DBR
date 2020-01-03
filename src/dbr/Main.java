@@ -279,11 +279,6 @@ public class Main extends javax.swing.JFrame implements MouseListener {
                 jButton6MouseClicked(evt);
             }
         });
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
 
         jButton7.setBackground(new java.awt.Color(204, 204, 204));
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -436,7 +431,7 @@ public class Main extends javax.swing.JFrame implements MouseListener {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        schema=jTextArea1.getText();
+        schema=jTextArea1.getText().trim();
         if (!schema.matches("^([a-zA-Z]+\\([a-zA-Z]+(,[a-zA-Z]+)*\\);)+$")){
           JOptionPane.showMessageDialog(this,
             "L'entrée que vous avez fournie n'est pas valide, assurez-vous de saisir l'entrée au format approprié.",
@@ -446,6 +441,9 @@ public class Main extends javax.swing.JFrame implements MouseListener {
         }
         relations=schema.split(";");
         suivant(jPanel2);
+        jPanel5.removeAll();
+        jPanel5.revalidate();
+        jPanel5.repaint();
         for(int j=0;j<relations.length;j++){
             checkbox.add(new ArrayList<JCheckBox>());
             String str = relations[j].substring(relations[j].indexOf("(")+1,relations[j].indexOf(")"));//extrare les col d'un relation
@@ -488,29 +486,22 @@ public class Main extends javax.swing.JFrame implements MouseListener {
         suivant(jPanel1);
     }//GEN-LAST:event_jButton5MouseClicked
 
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
-        suivant(jPanel2);
-    }//GEN-LAST:event_jButton7MouseClicked
-
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
         // TODO add your handling code here:
         annuler();
     }//GEN-LAST:event_jButton8MouseClicked
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        // TODO add your handling code here:
-        //suivant();
-    }//GEN-LAST:event_jButton6MouseClicked
-
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         suivant(jPanel3);
-        
+        jPanel6.removeAll();
+        jPanel6.revalidate();
+        jPanel6.repaint();
         c1.clear();        
         c2.clear();        
         c3.clear();
         t1.clear();
+        b1.clear();
 
 
         javax.swing.JPanel panel1=new javax.swing.JPanel();            
@@ -568,11 +559,18 @@ public class Main extends javax.swing.JFrame implements MouseListener {
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
         // TODO add your handling code here:
+        annuler();
     }//GEN-LAST:event_jButton9MouseClicked
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        suivant(jPanel4);
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+        suivant(jPanel2);
+    }//GEN-LAST:event_jButton7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -642,7 +640,6 @@ public class Main extends javax.swing.JFrame implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("click");
         javax.swing.JPanel panel=new javax.swing.JPanel();            
                 BoxLayout layout = new BoxLayout(panel, BoxLayout.X_AXIS); 
                 panel.setBackground(Color.white);
